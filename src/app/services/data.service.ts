@@ -23,4 +23,8 @@ export class DataService {
         const accountTransactions = of(ACCOUNTTRANSACTIONS);
         return accountTransactions;
     }
+    public getSingleAccountTransactions(id: number): Observable<IAccountTransaction> {
+        const accountTransactions = of(ACCOUNTTRANSACTIONS.find(a => a.account_id === id));
+        return accountTransactions;
+    }
 }

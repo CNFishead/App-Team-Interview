@@ -1,33 +1,65 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title ">Account Table</h4>
-                      <p class="card-category"> A listing of All accounts</p>
-                  </div>
-                  <div class="card-body" *ngIf="accountData.length" >
-                      <div class="table-responsive" >
-                          <table class="table">
-                              <thead class=" text-primary">
-                                  <th *ngFor="let header of accountColumns">
-                                      {{header}}
-                                  </th>
-                              <tbody>
-                                  <tr *ngFor="let account of accountData">
-                                    <td> {{account.account_id}}</td>
-                                    <td> {{account.limit}}</td>
-                                    <td> {{account.products}}</td>
-                                    <td>Details</td>                                   
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Account Table</h4>
+            <p class="card-category">A listing of All accounts</p>
           </div>
+          <div class="card-body" *ngIf="accountData.length">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th *ngFor="let header of accountColumns">
+                    {{ header }}
+                  </th>
+                </thead>
 
+                <tbody>
+                  <tr *ngFor="let account of accountData">
+                    <td>{{ account.account_id }}</td>
+                    <td>{{ account.limit }}</td>
+                    <td>{{ account.products }}</td>
+                    <td><button (click)="setAccountId(account.account_id)">Details</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
+      
+      <div class="col-md-12" *ngIf="accountTransactions.length > 0">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Transactions Table</h4>
+            <p class="card-category">A listing of All transactions</p>
+          </div>
+          <div class="card-body" *ngIf="accountTransactions.length">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th *ngFor="let header of transactionColumns">
+                    {{ header }}
+                  </th>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let account of accountTransactions">
+                    <td>{{ account.date }}</td>
+                    <td>{{ account.amount}}</td>
+                    <td>{{ account.transaction_code }}</td>
+                    <td>{{ account.symbol }}</td>
+                    <td>{{ account.price | currency: "USD": true: "1.2-2" }}</td>
+                    <td>{{ account.total | currency: "USD": true: "1.2-2" }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
